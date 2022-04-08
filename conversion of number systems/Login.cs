@@ -19,9 +19,7 @@ namespace Zack
         Dictionary<string, object> ReadDic = new Dictionary<string, object>();
         public Logion()
         {
-
             InitializeComponent();
-
         }
 
         private void Login_Load(object sender, EventArgs e)
