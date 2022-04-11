@@ -96,6 +96,7 @@ namespace Zack
                     MeassgeBoxUIPage.UIPageWarning("【" + txt_UserName.Text + "】此用户已存在");
                     return;
                 }
+
                 strSql = "insert into zack_user set user='" + txt_UserName.Text + "',name='" + txt_Name.Text + "',password='" + txt_PassWord.Text + "',creatertime='" + dp_CreaterTime.Text + "',type='" + (int)(cmbIdentity_Type.SelectedIndex + 1) + "',resume='" + txt_Resume.Text + "',email='" + txt_Email.Text + "',phone='" + txt_Phone.Text + "'";
                 int result = MySqlDBHelp.Execute(strSql);
                 if (result > 0)

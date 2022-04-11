@@ -40,7 +40,7 @@ namespace Zack
         /// <param name="Msg"></param>
         public static void UIPageSuccessNotifier(string Msg)
         {
-            UIPage.ShowSuccessNotifier(Msg,false,5000);
+            UIPage.ShowSuccessNotifier(Msg, false, 5000);
         }
         /// <summary>
         /// 错误提示右下框
@@ -49,6 +49,20 @@ namespace Zack
         public static void UIPageErrorNotifier(string Msg)
         {
             UIPage.ShowErrorNotifier(Msg, false, 5000);
+        }
+
+        /// <summary>
+        /// 警告信息提示框
+        /// </summary>
+        /// <param name="Msg"></param>
+        public static bool UIPageShowAskDialog(string Msg)
+        {
+            if (UIPage.ShowAskDialog(Msg))
+            {
+                UIPage.ShowSuccessTip("已删除");
+                return true;
+            }
+            return false;           
         }
     }
 }

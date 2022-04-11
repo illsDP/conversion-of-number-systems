@@ -29,27 +29,27 @@ namespace Zack
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtLogin.Text))
+            if (string.IsNullOrEmpty(txtLogin.Text.Trim()))
             {
                 MeassgeBoxUIPage.UIPageWarning("用户名不能为空啊!");
                 return;
             }
-            if (string.IsNullOrEmpty(txtPassWord.Text))
+            if (string.IsNullOrEmpty(txtPassWord.Text.Trim()))
             {
                 MeassgeBoxUIPage.UIPageWarning("密码要输入啊!");
                 return;
             }
 
-            string strSql = "select * from zack_user where  user='" + txtLogin.Text + "'";
+            string strSql = "select * from zack_user where  user='" + txtLogin.Text.Trim() + "'";
             DataTable dt = MySqlDBHelp.getTable(strSql);
             string[] arryDt = null;
             //进行账号校验  
-            if (dt.Rows.Count <= 0 && dt.Rows.Count > 1)
+            if (dt.Rows.Count <= 0 || dt.Rows.Count > 1)
             {
                 arryDt = dt.AsEnumerable().Select(t => t.Field<string>("user").ToString()).ToArray();
                 if (arryDt.Length <= 0)
                 {
-                    MeassgeBoxUIPage.UIPageWarning("【" + txtLogin.Text + "】此用户不存在");
+                    MeassgeBoxUIPage.UIPageWarning("【" + txtLogin.Text.Trim() + "】此用户不存在");
                     return;
 
                 }
@@ -65,36 +65,33 @@ namespace Zack
                 }
             }
             //个人信息缓存处理
-            if (!string.IsNullOrEmpty(txtLogin.Text) && !string.IsNullOrEmpty(txtPassWord.Text))
+            if (!string.IsNullOrEmpty(txtLogin.Text.Trim()) && !string.IsNullOrEmpty(txtPassWord.Text.Trim()))
             {
-                if (CkbPasssWord.Checked)
+                Dictionary<string, object> addDic = new Dictionary<string, object>();
+                foreach (DataRow row in dt.Rows)
                 {
-                    Dictionary<string, object> addDic = new Dictionary<string, object>();
-                    foreach (DataRow row in dt.Rows)
+                    foreach (DataColumn col in dt.Columns)
                     {
-                        foreach (DataColumn col in dt.Columns)
-                        {
-                            addDic.Add(col.ColumnName, row[col]);
-                        }
-                    }                  
-                    //addDic.Add("用户账号", txtPassWord.Text);
-                    //addDic.Add("用户密码", txtPassWord.Text);
-                    //addDic.Add("用户权限", txtPassWord.Text);
-                    //addDic.Add("用户等级", txtPassWord.Text);
-                    //addDic.Add("使用时间", txtPassWord.Text);
-                    //addDic.Add("注册时间", txtPassWord.Text);
-                    //addDic.Add("联系方式", txtPassWord.Text);
-                    //addDic.Add("E-Mail", txtPassWord.Text);
-                    //addDic.Add("用户座右铭", txtPassWord.Text);
-                    
-                    //判断缓存中是否存在此账号密码，否则添加                   
-                    ReadDic = AuthCacheHelper.ReadCache(txtLogin.Text);
-                    if (ReadDic == null)
-                    {
-                        AuthCacheHelper.AddCache(addDic);
+                        addDic.Add(col.ColumnName, row[col]);
                     }
-                    lstsourece.Add(txtLogin.Text);
                 }
+                //addDic.Add("用户账号", txtPassWord.Text);
+                //addDic.Add("用户密码", txtPassWord.Text);
+                //addDic.Add("用户权限", txtPassWord.Text);
+                //addDic.Add("用户等级", txtPassWord.Text);
+                //addDic.Add("使用时间", txtPassWord.Text);
+                //addDic.Add("注册时间", txtPassWord.Text);
+                //addDic.Add("联系方式", txtPassWord.Text);
+                //addDic.Add("E-Mail", txtPassWord.Text);
+                //addDic.Add("用户座右铭", txtPassWord.Text);
+
+                //判断缓存中是否存在此账号密码，否则添加                   
+                ReadDic = AuthCacheHelper.ReadCache(txtLogin.Text.Trim());
+                if (ReadDic == null)
+                {
+                    AuthCacheHelper.AddCache(addDic);
+                }
+                lstsourece.Add(txtLogin.Text.Trim());
             }
 
 
@@ -107,14 +104,15 @@ namespace Zack
         }
         private void txtPassWord_TextChanged(object sender, EventArgs e)
         {
-
-
-            ReadDic = AuthCacheHelper.ReadCache(txtLogin.Text);
-            if (ReadDic != null && ReadDic.Count > 0)
+            if (CkbPasssWord.Checked)
             {
-                object pwd = null;
-                ReadDic.TryGetValue("password", out pwd);
-                txtPassWord.Text = pwd.ToString();
+                ReadDic = AuthCacheHelper.ReadCache(txtLogin.Text.Trim());
+                if (ReadDic != null && ReadDic.Count > 0)
+                {
+                    object pwd = null;
+                    ReadDic.TryGetValue("password", out pwd);
+                    txtPassWord.Text = pwd.ToString();
+                }
             }
         }
 
@@ -212,8 +210,17 @@ namespace Zack
 
 
 
+
         #endregion
 
+     
 
+        private void Logion_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (int)Keys.Enter)
+            {
+                btnLogin_Click(sender, e);
+            }
+        }
     }
 }

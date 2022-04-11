@@ -8,7 +8,7 @@ namespace Zack
     public static class AuthCacheHelper
     {
         private static long timeout = 300;//缓存时间
-        private static Dictionary<string, object> cacheInfo = new Dictionary<string, object>();
+        public static Dictionary<string, object> cacheInfo = new Dictionary<string, object>();
         //private static Dictionary<string, object> initialize = new Dictionary<string, object>();
 
 

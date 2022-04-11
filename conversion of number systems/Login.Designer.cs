@@ -49,7 +49,7 @@
             this.PicBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.PicBox.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PicBox.BackgroundImage")));
             this.PicBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PicBox.Location = new System.Drawing.Point(64, 265);
+            this.PicBox.Location = new System.Drawing.Point(53, 234);
             this.PicBox.Name = "PicBox";
             this.PicBox.Size = new System.Drawing.Size(102, 98);
             this.PicBox.TabIndex = 0;
@@ -58,7 +58,7 @@
             // btnLogin
             // 
             this.btnLogin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnLogin.Location = new System.Drawing.Point(182, 402);
+            this.btnLogin.Location = new System.Drawing.Point(171, 338);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(218, 33);
             this.btnLogin.TabIndex = 3;
@@ -85,7 +85,7 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.BackColor = System.Drawing.Color.Gainsboro;
             this.panel1.Controls.Add(this.txtLogin);
-            this.panel1.Location = new System.Drawing.Point(182, 265);
+            this.panel1.Location = new System.Drawing.Point(171, 234);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(218, 35);
             this.panel1.TabIndex = 4;
@@ -107,7 +107,7 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.panel2.BackColor = System.Drawing.Color.Gainsboro;
             this.panel2.Controls.Add(this.txtPassWord);
-            this.panel2.Location = new System.Drawing.Point(182, 303);
+            this.panel2.Location = new System.Drawing.Point(171, 272);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(218, 35);
             this.panel2.TabIndex = 5;
@@ -116,7 +116,7 @@
             // 
             this.CkbPasssWord.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.CkbPasssWord.AutoSize = true;
-            this.CkbPasssWord.Location = new System.Drawing.Point(182, 347);
+            this.CkbPasssWord.Location = new System.Drawing.Point(171, 316);
             this.CkbPasssWord.Name = "CkbPasssWord";
             this.CkbPasssWord.Size = new System.Drawing.Size(72, 16);
             this.CkbPasssWord.TabIndex = 6;
@@ -127,7 +127,7 @@
             // 
             this.CkbLogin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.CkbLogin.AutoSize = true;
-            this.CkbLogin.Location = new System.Drawing.Point(328, 347);
+            this.CkbLogin.Location = new System.Drawing.Point(317, 316);
             this.CkbLogin.Name = "CkbLogin";
             this.CkbLogin.Size = new System.Drawing.Size(72, 16);
             this.CkbLogin.TabIndex = 7;
@@ -140,7 +140,7 @@
             this.labRegister.AutoSize = true;
             this.labRegister.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labRegister.ForeColor = System.Drawing.Color.Blue;
-            this.labRegister.Location = new System.Drawing.Point(406, 276);
+            this.labRegister.Location = new System.Drawing.Point(395, 245);
             this.labRegister.Name = "labRegister";
             this.labRegister.Size = new System.Drawing.Size(63, 14);
             this.labRegister.TabIndex = 8;
@@ -155,7 +155,7 @@
             this.labFindPass.AutoSize = true;
             this.labFindPass.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labFindPass.ForeColor = System.Drawing.Color.Blue;
-            this.labFindPass.Location = new System.Drawing.Point(406, 312);
+            this.labFindPass.Location = new System.Drawing.Point(395, 281);
             this.labFindPass.Name = "labFindPass";
             this.labFindPass.Size = new System.Drawing.Size(63, 14);
             this.labFindPass.TabIndex = 9;
@@ -170,7 +170,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(517, 447);
+            this.ClientSize = new System.Drawing.Size(517, 384);
             this.Controls.Add(this.labFindPass);
             this.Controls.Add(this.labRegister);
             this.Controls.Add(this.CkbLogin);
@@ -179,13 +179,15 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.PicBox);
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Logion";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "用户登录";
+            this.Text = "0";
             this.Load += new System.EventHandler(this.Login_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Logion_KeyPress);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Logion_MouseDown);
             ((System.ComponentModel.ISupportInitialize)(this.PicBox)).EndInit();
             this.panel1.ResumeLayout(false);
